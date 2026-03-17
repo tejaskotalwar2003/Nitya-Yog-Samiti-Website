@@ -1,8 +1,10 @@
-from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+import os
 
-DATABASE_URL = "postgresql://yogsamiti_user:mb3li9c0AUaeZQXdmwDaUKoTSjw2KBFE@dpg-d6rqp9ggjchc73bf371g-a/yogsamiti"
+DATABASE_URL = os.getenv("DATABASE_URL")  # 🔥 get from Render env
 
-engine = create_engine(DATABASE_URL)
-
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"sslmode": "require"}  # 🔥 VERY IMPORTANT
+)
