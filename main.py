@@ -15,6 +15,9 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from fastapi.responses import RedirectResponse
 
+import os
+print("DB URL:", os.getenv("DATABASE_URL"))
+
 app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
