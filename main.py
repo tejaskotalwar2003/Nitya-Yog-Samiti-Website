@@ -431,7 +431,7 @@ def dashboard(request: Request):
 
 #admin registration check 
 @app.get("/admin/registrations")
-def admin_users(request: Request):
+def admin_registrations(request: Request):
 
     with engine.connect() as conn:
 
