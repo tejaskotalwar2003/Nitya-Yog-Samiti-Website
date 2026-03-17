@@ -73,7 +73,7 @@ def submit_registration(
     with engine.connect() as conn:
 
         conn.execute(
-            text("""INSERT INTO users(name,age,mobile,address,district,state,health_problem)
+            text("""INSERT INTO registrations(name,age,mobile,address,district,state,health_problem)
             VALUES (:n,:a,:m,:ad,:d,:s,:h)"""),
             {
                 "n": name,
