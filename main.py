@@ -400,8 +400,8 @@ def dashboard(request: Request):
 
     with engine.connect() as conn:
 
-        users = conn.execute(
-            text("SELECT COUNT(*) FROM users")
+        registrations = conn.execute(
+            text("SELECT COUNT(*) FROM registrations")
         ).scalar()
 
         reviews = conn.execute(
@@ -421,7 +421,7 @@ def dashboard(request: Request):
         "admin_dashboard.html",
         {
             "request": request,
-            "users": users,
+            "registrations": registrations,
             "reviews": reviews,
             "branches": branches,
             "photos": photos,
@@ -430,20 +430,20 @@ def dashboard(request: Request):
     )
 
 #admin registration check 
-@app.get("/admin/users")
+@app.get("/admin/registrations")
 def admin_users(request: Request):
 
     with engine.connect() as conn:
 
-        users = conn.execute(
-            text("SELECT * FROM users ORDER BY id DESC")
+        registrations = conn.execute(
+            text("SELECT * FROM registrations ORDER BY id DESC")
         ).fetchall()
 
     return templates.TemplateResponse(
         "admin_registration.html",
         {
             "request": request,
-            "users": users
+            "registrations": registrations
         }
     )
 
@@ -459,7 +459,7 @@ def delete_user(id:int):
         )
         conn.commit()
 
-    return RedirectResponse("/admin/users", status_code=303)
+    return RedirectResponse("/admin/registrations", status_code=303)
 
 
 #Admin Reviews
