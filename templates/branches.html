@@ -297,13 +297,21 @@ background:#14b8a6;
 
 <h3>{{branch.name}}</h3>
 
-<p class="info"><i class="fas fa-map-marker-alt"></i> {{branch.address}}</p>
+<p class="info">
+<i class="fas fa-map-marker-alt"></i> {{branch.address}}
+</p>
 
-<p class="info"><i class="fas fa-clock"></i> Morning Batch: 6:00 AM</p>
+<p class="info">
+<i class="fas fa-clock"></i> Batch: {{branch.batch_time}}
+</p>
 
-<p class="info"><i class="fas fa-user"></i> Trainer: Yoga Guru</p>
+<p class="info">
+<i class="fas fa-user"></i> Trainer: {{branch.trainer}}
+</p>
 
-<p class="info"><i class="fas fa-phone"></i> 9876543210</p>
+<p class="info">
+<i class="fas fa-phone"></i> {{branch.contact}}
+</p>
 
 <a href="{{branch.map_link}}" target="_blank" class="btn">
 Get Directions
