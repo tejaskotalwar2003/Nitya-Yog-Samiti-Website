@@ -56,6 +56,11 @@ padding:5px;
 border-radius:8px;
 }
 
+.logo span{
+font-size:22px;
+font-weight:600;
+}
+
 nav ul{
 display:flex;
 gap:25px;
@@ -69,12 +74,75 @@ text-decoration:none;
 font-weight:500;
 }
 
-nav a.active{
-color:#14b8a6;
-border-bottom:2px solid #14b8a6;
+/* DROPDOWN */
+
+.dropdown{
+position:relative;
 }
 
-/* join button */
+.dropdown-menu{
+display:none;
+position:absolute;
+top:100%;
+left:0;
+background:white;
+list-style:none;
+min-width:170px;
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+border-radius:6px;
+overflow:hidden;
+padding:5px 0;
+}
+
+.dropdown-menu li{
+padding:10px 15px;
+}
+
+.dropdown-menu a{
+color:#333;
+display:block;
+}
+
+.dropdown-menu li:hover{
+background:#f3f4f6;
+}
+
+.dropdown:hover .dropdown-menu{
+display:block;
+}
+
+/* MOBILE MENU */
+
+.menu-btn{
+display:none;
+font-size:22px;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+
+nav ul{
+position:absolute;
+top:70px;
+left:0;
+width:100%;
+background:#0f766e;
+flex-direction:column;
+display:none;
+padding:20px;
+}
+
+nav ul.show{
+display:flex;
+}
+
+.menu-btn{
+display:block;
+}
+
+}
+
+/* JOIN BUTTON */
 
 .join-btn{
 background:#14b8a6;
@@ -82,10 +150,9 @@ padding:8px 18px;
 border-radius:20px;
 }
 
-/* HERO TITLE */
+/* HERO */
 
 .page-title{
-
 background:
 linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
 url("https://images.unsplash.com/photo-1506126613408-eca07ce68773");
@@ -95,19 +162,15 @@ background-position:center;
 
 text-align:center;
 color:white;
-
 padding:80px 20px;
-
 }
 
 .page-title h1{
 font-size:42px;
-margin-bottom:10px;
 }
 
 .page-title p{
 font-size:18px;
-opacity:0.9;
 }
 
 /* CONTAINER */
@@ -127,27 +190,21 @@ gap:30px;
 /* CARD */
 
 .card{
-
 background:white;
 border-radius:12px;
 padding:25px;
 box-shadow:0 5px 15px rgba(0,0,0,0.1);
 transition:0.3s;
-
 }
 
 .card:hover{
 transform:translateY(-10px);
 }
 
-/* TITLE */
-
 .card h3{
 color:#0f766e;
 margin-bottom:10px;
 }
-
-/* DETAILS */
 
 .info{
 margin:8px 0;
@@ -160,10 +217,7 @@ color:#0f766e;
 margin-right:8px;
 }
 
-/* BUTTON */
-
 .btn{
-
 display:inline-block;
 margin-top:15px;
 background:#0f766e;
@@ -172,7 +226,6 @@ padding:10px 18px;
 border-radius:6px;
 text-decoration:none;
 transition:0.3s;
-
 }
 
 .btn:hover{
@@ -194,18 +247,29 @@ background:#14b8a6;
 <span>Nitya Yog Samiti</span>
 </div>
 
-<ul>
+<div class="menu-btn" onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
+</div>
+
+<ul id="menu">
 
 <li><a href="/">Home</a></li>
-
 <li><a href="/aboutus">About Us</a></li>
-
-<li><a href="/branches" class="active">Branches</a></li>
-
+<li><a href="/branches">Branches</a></li>
 <li><a href="/reviews">Reviews</a></li>
 
-<li><a href="/gallery">Gallery</a></li>
+<li class="dropdown">
+<a href="#">Media <i class="fa fa-caret-down"></i></a>
+<ul class="dropdown-menu">
+<li><a href="/gallery">Photo Gallery</a></li>
+<li><a href="/videos">Videos</a></li>
+<li><a href="/events">Events</a></li>
+<li><a href="/news">News</a></li>
+</ul>
+</li>
 
+<li><a href="/committee">Committee Members</a></li>
+<li><a href="/faq">FAQ</a></li>
 <li><a href="/developer">Developer</a></li>
 
 <li><a href="/register" class="join-btn">Join Class</a></li>
@@ -214,14 +278,11 @@ background:#14b8a6;
 
 </nav>
 
-<!-- PAGE TITLE -->
+<!-- TITLE -->
 
 <div class="page-title">
-
 <h1>Our Branches in Nanded</h1>
-
-<p>Find the nearest Nitya Yog Samiti branch and begin your yoga journey</p>
-
+<p>Find the nearest Nitya Yog Samiti branch</p>
 </div>
 
 <!-- BRANCHES -->
@@ -256,6 +317,13 @@ Get Directions
 
 </div>
 
-</body>
+<script>
 
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("show")
+}
+
+</script>
+
+</body>
 </html>
