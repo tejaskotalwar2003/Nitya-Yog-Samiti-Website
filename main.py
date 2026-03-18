@@ -260,27 +260,6 @@ def delete_review(id: int):
 def upload_page(request: Request):
     return templates.TemplateResponse("admin_upload.html", {"request": request})
 
-#upload photo api
-@app.post("/admin/upload_photo")
-def upload_photo(photo: UploadFile = File(...)):
-
-    filename = photo.filename
-    filepath = f"static/uploads/{filename}"
-
-    with open(filepath, "wb") as buffer:
-        shutil.copyfileobj(photo.file, buffer)
-
-    with engine.connect() as conn:
-        conn.execute(
-            text("INSERT INTO gallery (image) VALUES (:image)"),
-            {"image": filename}
-        )
-        conn.commit()
-
-    return RedirectResponse("/admin/gallery", status_code=303)
-
-
-
 # ADD BRANCH
 from fastapi import Form
 from sqlalchemy import text
