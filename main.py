@@ -27,10 +27,6 @@ app.mount("/static", StaticFiles(directory="static"), name ="static")
 
 
 
-#donate 
-@app.get("/donate", response_class=HTMLResponse)
-def donate_us(request: Request):
-    return templates.TemplateResponse("donate.html", {"request": request})
 
 
 # HOME PAGE
@@ -38,6 +34,10 @@ def donate_us(request: Request):
 def home(request: Request):
     return templates.TemplateResponse("index1.html", {"request": request})
 
+#donate 
+@app.get("/donate", response_class=HTMLResponse)
+def donate_us(request: Request):
+    return templates.TemplateResponse("donate.html", {"request": request})
 
 @app.get("/developer", response_class=HTMLResponse)
 def home(request: Request):
