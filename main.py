@@ -23,6 +23,16 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
 app.mount("/static", StaticFiles(directory="static"), name ="static")
+
+
+
+
+#donate 
+@app.get("/donate", response_class=HTMLResponse)
+def donate_us(request: Request):
+    return templates.TemplateResponse("donate.html", {"request": request})
+
+
 # HOME PAGE
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
