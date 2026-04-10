@@ -34,7 +34,7 @@ app.mount("/static", StaticFiles(directory="static"), name ="static")
 def home(request: Request):
     return templates.TemplateResponse("index1.html", {"request": request})
 
-#donate 
+# donate 
 @app.get("/donate", response_class=HTMLResponse)
 def donate_us(request: Request):
     return templates.TemplateResponse("donate.html", {"request": request})
@@ -352,14 +352,12 @@ def edit_branch(
 @app.get("/delete_branch/{branch_id}")
 def delete_branch(branch_id: int):
 
-    conn = get_connection()
-    cur = conn.cursor()
-
-    cur.execute("DELETE FROM branches WHERE id=%s", (branch_id,))
-    conn.commit()
-
-    cur.close()
-    conn.close()
+    with engine.connect() as conn:
+        conn.execute(
+            text("DELETE FROM branches WHERE id=:id"),
+            {"id": branch_id}
+        )
+        conn.commit()
 
     return RedirectResponse("/admin/branches", status_code=303)
 
